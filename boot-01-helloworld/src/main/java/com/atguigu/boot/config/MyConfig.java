@@ -1,9 +1,11 @@
 package com.atguigu.boot.config;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.atguigu.boot.bean.Car;
 import com.atguigu.boot.bean.Pet;
 import com.atguigu.boot.bean.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -43,6 +45,9 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration(proxyBeanMethods = false)
 //根据xml文件配置bean，用的比较少
 //@ImportResource("classpath:beans.xml")
+//1、开启Car的属性配置功能，car的属性配置才能生效
+//2、将组件自动注册到容器中
+@EnableConfigurationProperties(Car.class)
 public class MyConfig {
 
     @Bean("tom")

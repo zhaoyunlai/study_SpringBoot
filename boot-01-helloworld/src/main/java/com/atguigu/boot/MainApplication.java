@@ -1,10 +1,13 @@
 package com.atguigu.boot;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.atguigu.boot.bean.Car;
 import com.atguigu.boot.bean.Pet;
 import com.atguigu.boot.bean.User;
 import com.atguigu.boot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +22,10 @@ import org.springframework.context.annotation.ComponentScan;
  * 主程序类
  * @SpringBootApplication: 这是一个SpringBoot应用
  */
-@SpringBootApplication
+//@SpringBootApplication
+//一个注解相当于下面这三个注解
+@SpringBootConfiguration
+@EnableAutoConfiguration
 @ComponentScan("com.atguigu")
 public class MainApplication {
     public static void main(String[] args) {
