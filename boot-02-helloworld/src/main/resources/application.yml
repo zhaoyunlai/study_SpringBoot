@@ -1,0 +1,37 @@
+person:
+  user-name: kunkun
+#  对于字符串类型，这里不需要加上引号
+#  如果加上引号，单引号会将\n作为字符串输出 双引号会将\n作为换行输出
+#  双引号不会转义，单引号会转义（就是单引号不会改变\n的转义功能，而单引号会将它当做普通字符串）
+  boss: true
+#  默认格式是斜杠
+  birth: 2019/12/9
+  age: 18
+#  interests: [唱,跳,rap,篮球]
+  interests:
+    - 唱
+    - 跳
+    - rap
+    - 篮球
+  animal: [鸡，你太美]
+#  score:
+#    English: 80
+#    math: 90
+  score: {English:80,math:90}
+  salarys:
+    - 9999.98
+    - 9999.99
+  pet:
+    name: ikun
+    weight: 999.99
+  allPets:
+    sick:
+      - {name: gou,weight: 80.9}
+      - name: 阿猫
+        weight: 89.8
+      - name: 啊虫
+        weight: 77.3
+    health:
+      - {name: 来福,weight: 80.9}
+      - {name: 黑蛋,weight: 80.9}
+
