@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-//    @RequestMapping("/makabaka.jpg")
-//    public String hello(){
-//        return "动态请求";
-//    }
+    @RequestMapping("/makabaka.jpg")
+    public String hello(){
+        return "动态请求";
+    }
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public String getUser(){

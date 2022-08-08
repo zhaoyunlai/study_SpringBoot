@@ -25,7 +25,7 @@
 <hr/>
 测试基本注解：
 <ul>
-    <a href="car/3/owner/lisi?age=18&inters=basketball&inters=game">car/{id}/owner/{username}</a>
+    <a href="car/3/owner/lisi">car/{id}/owner/{username}</a>
     <li>@PathVariable（路径变量）</li>
     <li>@RequestHeader（获取请求头）</li>
     <li>@RequestParam（获取请求参数）</li>
@@ -35,7 +35,7 @@
     <li>@RequestAttribute（获取request域属性）</li>
     <li>@MatrixVariable（矩阵变量）</li>
 </ul>
-
+<hr/>
 /cars/{path}?xxx=xxx&aaa=ccc queryString 查询字符串。@RequestParam；<br/>
 /cars/sell;low=34;brand=byd,audi,yd  ；矩阵变量 <br/>
 页面开发，cookie禁用了，session里面的内容怎么使用；
@@ -45,10 +45,12 @@ url重写：/abc;jsesssionid=xxxx 把cookie的值使用矩阵变量的方式进�
 /boss/1/2
 
 /boss/1;age=20/2;age=20
-
-<a href="/cars/sell;low=34;brand=byd,audi,yd">@MatrixVariable（矩阵变量）</a>
-<a href="/cars/sell;low=34;brand=byd;brand=audi;brand=yd">@MatrixVariable（矩阵变量）</a>
-<a href="/boss/1;age=20/2;age=10">@MatrixVariable（矩阵变量）/boss/{bossId}/{empId}</a>
+<hr/>
+<a href="/cars/sell;low=34;brand=byd,audi,yd">@MatrixVariable（矩阵变量）/cars/sell;low=34;brand=byd,audi,yd</a>
+<br/>
+<a href="/cars/sell;low=34;brand=byd;brand=audi;brand=yd">@MatrixVariable（矩阵变量）/cars/sell;low=34;brand=byd;brand=audi;brand=yd</a>
+<br/>
+<a href="/boss/1;age=20/2;age=10">@MatrixVariable（矩阵变量）/boss/1;age=20/2;age=10</a>
 <br/>
 <form action="/save" method="post">
     测试@RequestBody获取数据 <br/>
