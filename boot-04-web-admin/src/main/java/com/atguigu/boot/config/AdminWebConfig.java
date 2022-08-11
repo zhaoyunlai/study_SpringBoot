@@ -3,6 +3,7 @@ package com.atguigu.boot.config;
 import com.atguigu.boot.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -21,5 +22,15 @@ public class AdminWebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")//静态资源也会拦截
                 .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**");//放行的请求
+    }
+
+    /**
+     * 定义静态资源行为
+     * 访问 /aa/** 所有请求都去classpath:/static/ 下面进行匹配
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/aa/**")
+                .addResourceLocations("classpath:/static/");
     }
 }
