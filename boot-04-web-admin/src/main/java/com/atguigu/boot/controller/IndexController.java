@@ -1,11 +1,15 @@
 package com.atguigu.boot.controller;
 
 import com.atguigu.boot.bean.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +18,21 @@ import javax.servlet.http.HttpSession;
  * @Date: 2022/08/10/14:59
  * @Description:
  */
+@Slf4j
 @Controller
 public class IndexController {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @ResponseBody
+    @GetMapping("/sql")
+    public String queryFromDb(){
+
+        Long num = (Long)jdbcTemplate.queryForObject("select count(*) from t_user_origin",Long.class);
+        log.info("数据数为{}",num);
+        return num.toString();
+    }
 
     //到登录页
     @GetMapping(value = {"/","/login"})
