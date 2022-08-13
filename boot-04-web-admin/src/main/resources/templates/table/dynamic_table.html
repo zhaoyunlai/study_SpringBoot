@@ -78,6 +78,7 @@
             <th>名字</th>
             <th class="hidden-phone">年龄</th>
             <th class="hidden-phone">邮箱</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -87,20 +88,32 @@
             <td th:text="${user.name}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{/user/delete/{id}(id=${user.id},current=${page.current})}" class="btn btn-danger btn-sm" type="button">删除</a>
+            </td>
         </tr>
 
         </tbody>
-<!--        <tfoot>-->
-<!--        <tr>-->
-<!--            <th>Rendering engine</th>-->
-<!--            <th>Browser</th>-->
-<!--            <th>Platform(s)</th>-->
-<!--            <th class="hidden-phone">Engine version</th>-->
-<!--            <th class="hidden-phone">CSS grade</th>-->
-<!--        </tr>-->
-<!--        </tfoot>-->
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="dataTables_info" id="dynamic-table_info">
+                    <span th:text="|当前第 ${page.current} 页, 总计 ${page.pages} 页, 共 ${page.total} 条记录|"></span>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="dataTables_paginate paging_bootstrap pagination">
+                    <ul>
+                        <li ><a th:href="@{/dynamic_table(current=${page.current - 1})}" th:disabled="${page.current==1}">← 前一页</a></li>
+                        <li th:class="${num == page.current?'active':''}" th:each="num:${#numbers.sequence(1,page.pages)}" >
+                            <a th:href="@{/dynamic_table(current=${num})}">[[${num}]]</a>
+                        </li>
+                        <li ><a th:href="@{/dynamic_table(current=${page.current + 1})}" th:disabled="${page.current == page.pages}">下一页 → </a></li>
+                    </ul>
+                    </div>
+            </div>
+        </div>
         <div>
-            <span th:text="|当前第 ${page.current} 页, 总计 ${page.pages} 页, 共 ${page.total} 条记录|"></span>
+
         </div>
         </table>
         </div>
