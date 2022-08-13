@@ -1,6 +1,8 @@
 package com.atguigu.boot.config;
 
 import com.atguigu.boot.interceptor.LoginInterceptor;
+import com.atguigu.boot.interceptor.RedisURLCountInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -17,11 +19,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class AdminWebConfig implements WebMvcConfigurer {
 
+    /**
+     *Filter、Interceptor 几乎拥有相同的功能
+     * 1、Filter是Servlet定义的原生组件。好处就是可以脱离Spring使用
+     * 2、Interceptor是Spring定义的接口。
+     */
+    @Autowired
+    private RedisURLCountInterceptor redisURLCountInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")//静态资源也会拦截
                 .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**","/sql","/account","/dynamic_table/**");//放行的请求
+
+        registry.addInterceptor(redisURLCountInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**");
     }
 
     /**

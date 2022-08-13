@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -37,6 +40,16 @@ class Boot04WebAdminApplicationTests {
 //        User user = userService.getUserById(1L);
         User user = userService.getById(1L);
         System.out.println(user);
+    }
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Test
+    public void testRedis(){
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+        operations.set("hello","world");
+
     }
 
 

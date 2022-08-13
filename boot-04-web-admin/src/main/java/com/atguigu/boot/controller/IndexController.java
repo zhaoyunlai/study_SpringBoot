@@ -2,6 +2,9 @@ package com.atguigu.boot.controller;
 
 import com.atguigu.boot.bean.LoginUser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -18,6 +21,9 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class IndexController {
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
 
     //到登录页
@@ -49,6 +55,13 @@ public class IndexController {
 //            return "main";
 //        }
 //        model.addAttribute("msg","当前未登录");
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+        String s1 = operations.get("/main.html");
+        String s2 = operations.get("/sql");
+        String s3 = operations.get("/dynamic_table");
+        model.addAttribute("mainCount",s1);
+        model.addAttribute("sqlCount",s2);
+        model.addAttribute("dynamic_tableCount",s3);
         return "main";
     }
 }

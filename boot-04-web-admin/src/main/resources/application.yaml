@@ -34,6 +34,15 @@ spring:
   jdbc:
     template:
       query-timeout: 3
+  redis:
+    host: 82.157.140.177
+    port: 6379
+    password: 123321
+    client-name: lettuce
+    lettuce:
+      pool:
+        max-active: 8
+        min-idle: 0
 
 #server:
 #  error:
