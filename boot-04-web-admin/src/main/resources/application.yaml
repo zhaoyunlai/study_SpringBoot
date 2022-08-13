@@ -5,8 +5,8 @@ spring:
       max-request-size: 100MB
   datasource:
     url: jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC
-    username: root
-    password: root
+    username: zylai(S5q0WQQD0ZMSnSUptirN3TdcpkLBV2elIq1rEzWqrO4QVAOqPV7vOqwVsV8FI8lb)
+    password: zylai(rZ8qGFdZIxNvmOM5nFcQVLQ2lavkDgSV0bwK40R0mU6VGFTaYAkbh67YKlTDPJQ+)
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       stat-view-servlet: #监控页功能
@@ -37,7 +37,8 @@ spring:
   redis:
     host: 82.157.140.177
     port: 6379
-    password: 123321
+    password: zylai(7AuR89mdpV5u4uMeg9nvNwX78LCzW64sCpb7OOPSL4FhbpGzrbUktIXcrVanH+CP)
+#    password: 123321
     client-name: lettuce
     lettuce:
       pool:
@@ -54,3 +55,10 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*xml
   configuration:
     map-underscore-to-camel-case: true
+jasypt:
+  encryptor:
+#    加密密匙，从系统的环境变量中获取
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+    property:
+      prefix: zylai(
+      suffix: )
