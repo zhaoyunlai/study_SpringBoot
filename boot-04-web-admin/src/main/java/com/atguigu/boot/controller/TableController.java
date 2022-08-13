@@ -1,7 +1,15 @@
 package com.atguigu.boot.controller;
 
+import com.atguigu.boot.bean.User;
+import com.atguigu.boot.service.UserService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @Author: Zhao YunLai
@@ -11,6 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TableController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/basic_table")
     public String basic_table(){
 //        int a = 10/0;
@@ -18,8 +29,16 @@ public class TableController {
     }
 
     @GetMapping("/dynamic_table")
-    public String dynamic_table(){
+    public String dynamic_table(Model model,
+                                @RequestParam("current") Integer current){
+//        List<User> list = userService.list();
+        //分页查询数据
+        int size = 2;//每页的数据数，可以由前端请求发过来，也可以写死。一般不会写死
+        Page<User> userPage = new Page<>(current,size);
+        //查询之后，数据会封装在传入的page中
+        userService.page(userPage, null);
 
+        model.addAttribute("page",userPage);
         return "table/dynamic_table";
     }
 

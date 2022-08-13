@@ -1,15 +1,12 @@
 package com.atguigu.boot.controller;
 
-import com.atguigu.boot.bean.User;
+import com.atguigu.boot.bean.LoginUser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,17 +19,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @ResponseBody
-    @GetMapping("/sql")
-    public String queryFromDb(){
-
-        Long num = (Long)jdbcTemplate.queryForObject("select count(*) from t_user_origin",Long.class);
-        log.info("数据数为{}",num);
-        return num.toString();
-    }
 
     //到登录页
     @GetMapping(value = {"/","/login"})
@@ -41,7 +27,7 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public String main(User user, HttpSession session, Model model){
+    public String main(LoginUser user, HttpSession session, Model model){
         if(!StringUtils.isEmpty(user.getUsername()) && ("123456".equals(user.getPassword()))){
             //将登录成功的用户信息存到session中
             session.setAttribute("loginUser",user);
