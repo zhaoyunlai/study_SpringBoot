@@ -62,3 +62,7 @@ jasypt:
     property:
       prefix: zylai(
       suffix: )
+#      可以自定义加密算法，这个也可以放到环境变量中
+#    algorithm:
+#    自定义的加密器bean名称
+    bean: jasyptStringEncryptor

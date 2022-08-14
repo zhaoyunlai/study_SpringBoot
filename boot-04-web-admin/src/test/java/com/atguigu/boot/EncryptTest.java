@@ -3,6 +3,7 @@ package com.atguigu.boot;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
@@ -16,6 +17,7 @@ import org.springframework.core.env.Environment;
 public class EncryptTest {
 
     //加密的工具
+    @Qualifier("jasyptStringEncryptor")
     @Autowired
     private StringEncryptor stringEncryptor;
 
